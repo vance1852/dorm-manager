@@ -34,6 +34,10 @@
           <el-icon><Avatar /></el-icon>
           <template #title>学生管理</template>
         </el-menu-item>
+        <el-menu-item v-if="[1,2].includes(userInfo?.role)" index="/batch-allocation">
+          <el-icon><SetUp /></el-icon>
+          <template #title>批量分配</template>
+        </el-menu-item>
         <el-menu-item index="/repairs">
           <el-icon><Tools /></el-icon>
           <template #title>维修管理</template>

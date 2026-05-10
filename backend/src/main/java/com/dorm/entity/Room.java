@@ -16,6 +16,7 @@ public class Room {
     private Long buildingId;
     @NotBlank(message = "房间号不能为空")
     private String roomNumber;
+    private Integer floor;
     @NotNull(message = "容量不能为空")
     private Integer capacity;
     private Integer currentCount;
