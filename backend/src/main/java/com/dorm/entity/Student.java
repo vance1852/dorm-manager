@@ -23,6 +23,8 @@ public class Student {
     @NotNull(message = "性别不能为空")
     private Integer gender;
     private String phone;
+    private Integer schedulePreference;
+    private Integer smoking;
     private LocalDate enrollDate;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
