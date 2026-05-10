@@ -115,6 +115,23 @@ CREATE TABLE IF NOT EXISTS announcement (
     deleted TINYINT DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='公告表';
 
+-- 待分配学生表（批量导入临时表）
+CREATE TABLE IF NOT EXISTS pending_student (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    student_no VARCHAR(30) NOT NULL COMMENT '学号',
+    name VARCHAR(50) NOT NULL COMMENT '姓名',
+    gender TINYINT NOT NULL COMMENT '性别:1男 2女',
+    major VARCHAR(100) COMMENT '专业',
+    phone VARCHAR(20) COMMENT '手机号',
+    sleep_preference VARCHAR(20) COMMENT '作息偏好:早睡型 晚睡型',
+    is_smoker TINYINT DEFAULT 0 COMMENT '是否吸烟:0否 1是',
+    status TINYINT DEFAULT 0 COMMENT '状态:0待分配 1已分配 2校验失败',
+    error_msg VARCHAR(500) COMMENT '错误信息',
+    create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_student_no (student_no),
+    INDEX idx_status (status)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='待分配学生表';
+
 -- 操作日志表
 CREATE TABLE IF NOT EXISTS sys_operation_log (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
