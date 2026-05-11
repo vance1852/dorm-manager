@@ -129,3 +129,21 @@ CREATE TABLE IF NOT EXISTS sys_operation_log (
     INDEX idx_user_id (user_id),
     INDEX idx_create_time (create_time)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='操作日志表';
+
+-- 待分配学生表
+CREATE TABLE IF NOT EXISTS pending_student (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    student_no VARCHAR(30) NOT NULL COMMENT '学号',
+    name VARCHAR(50) NOT NULL COMMENT '姓名',
+    gender TINYINT NOT NULL DEFAULT 1 COMMENT '性别:1男 2女',
+    major VARCHAR(100) COMMENT '专业',
+    phone VARCHAR(20) COMMENT '手机号',
+    sleep_preference VARCHAR(20) COMMENT '作息偏好:早睡型/晚睡型',
+    smoking TINYINT DEFAULT 0 COMMENT '是否吸烟:0否 1是',
+    status TINYINT NOT NULL DEFAULT 0 COMMENT '状态:0待分配 1已分配 2已取消',
+    batch_no VARCHAR(50) COMMENT '导入批次号',
+    create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+    update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_batch_no (batch_no),
+    INDEX idx_status (status)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='待分配学生表';
