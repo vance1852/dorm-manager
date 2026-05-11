@@ -16,4 +16,11 @@ public interface BedMapper extends BaseMapper<Bed> {
             "WHERE b.room_id = #{roomId} " +
             "ORDER BY b.bed_number")
     List<Bed> selectByRoomId(@Param("roomId") Long roomId);
+
+    @Select("SELECT b.* FROM bed b " +
+            "JOIN room r ON b.room_id = r.id " +
+            "JOIN building bd ON r.building_id = bd.id " +
+            "WHERE b.status = 0 AND bd.gender = #{gender} " +
+            "ORDER BY bd.id, r.id, b.id")
+    List<Bed> selectAvailableBedsByGender(@Param("gender") Integer gender);
 }
